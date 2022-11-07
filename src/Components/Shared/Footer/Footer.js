@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../../../Assets/logo.jpg";
 import { FaFacebookF, FaGoogle, FaYoutube } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center border mt-20 p-10 text-black">
+    <footer className="footer footer-center border-y mt-20 p-10 text-black">
       <div>
-        <img src={logo} alt="" />
+        <Link to='/'><img src={logo} alt="" /></Link>
         <p className="font-bold text-xl lg:text-5xl">Rohima's Kitchen</p>
       </div>
       <div>
