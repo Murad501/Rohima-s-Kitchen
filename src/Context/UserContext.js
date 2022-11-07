@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStat
 
 const auth = getAuth(app)
 
-const authContext = createContext()
+export const authContext = createContext()
 
 const UserContext = ({children}) => {
 
