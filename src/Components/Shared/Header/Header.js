@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../Assets/logo.jpg'
+import logo from '../../../Assets/logo.jpg'
 
 const Header = () => {
   return (
-    <div className="navbar py-5 mb-5 bg-base-100">
+    <div className="navbar py-5 bg-base-100">
       <div className="flex-1">
         <Link to='/'><img className='w-20' src={logo} alt={'website logo'} /></Link>
       </div>
