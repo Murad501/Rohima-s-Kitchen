@@ -10,17 +10,6 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_appId
 };
 
-// Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD2nVPqKteHXVEicHA6A8SISfuXnDusrLk",
-//   authDomain: "rohima-s-kitchen.firebaseapp.com",
-//   projectId: "rohima-s-kitchen",
-//   storageBucket: "rohima-s-kitchen.appspot.com",
-//   messagingSenderId: "979905876683",
-//   appId: "1:979905876683:web:771cbd049a95372bc6c14e"
-// };
-
-// Initialize Firebase
 
 const app = initializeApp(firebaseConfig);
 

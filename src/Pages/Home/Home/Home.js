@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ServiceCard from "../../../Components/Shared/ServiceCard/ServiceCard";
+import useTitle from "../../../hooks/useTitle";
 import Carousel from "../Carousel/Carousel";
 import NewsLetter from "../NewsLetter/NewsLetter";
 
 const Home = () => {
   const [services, setServices] = useState([]);
+  useTitle('Home')
 
   useEffect(() => {
     fetch("http://localhost:5000/home")
@@ -22,9 +25,9 @@ const Home = () => {
           ))}
         </div>
         <div className="flex justify-center">
-        <button className="btn btn-success w-40 rounded-none text-lg mt-10 text-white font-semibold">
+        <Link to='/services' className="btn btn-success w-40 rounded-none text-lg mt-10 text-white font-semibold">
           See All 
-        </button>
+        </Link>
         </div>
       </div>
       <NewsLetter></NewsLetter>
