@@ -26,7 +26,6 @@ const Register = () => {
                 displayName: name,
                 photoURL: userImage
             })
-            console.log(user)
         })
         .catch(err => console.error(err))
     }
