@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ServiceCard from "../../Components/Shared/ServiceCard/ServiceCard";
+import useTitle from "../../hooks/useTitle";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  useTitle('Services')
 
   useEffect(() => {
     fetch("http://localhost:5000/services")

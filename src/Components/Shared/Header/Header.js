@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from '../../../Assets/logo.jpg'
+import { authContext } from "../../../Context/UserContext";
 
 const Header = () => {
+
+  const {user, logOut} = useContext(authContext)
+
+  const handleLogOut = () => {
+    logOut()
+    .then(()=>{})
+    .catch(err => console.error(err))
+  }
+
   return (
     <div className="navbar py-5 bg-base-100">
       <div className="flex-1">
@@ -16,9 +26,24 @@ const Header = () => {
           <li>
             <Link className="font-semibold" to="/blog">Blog</Link>
           </li>
-          <li>
-            <button className="btn btn-success text-white rounded-none">Log Out</button>
+          {
+            user?.email ? 
+            <>
+            <li>
+            <Link className="font-semibold" to="/myreviews">My Reviews</Link>
           </li>
+          <li>
+            <Link className="font-semibold" to="/addservice">Add Service</Link>
+          </li>
+            <li>
+            <button onClick={handleLogOut} className="btn btn-success text-white rounded-none">Log Out</button>
+          </li>
+            </>
+          :
+          <li>
+            <Link to='/login' className="btn btn-success text-white rounded-none">Log in</Link>
+          </li>
+          }
         </ul>
       </div>
     </div>

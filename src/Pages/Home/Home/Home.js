@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ServiceCard from "../../../Components/Shared/ServiceCard/ServiceCard";
 import useTitle from "../../../hooks/useTitle";
@@ -29,9 +30,10 @@ const Home = () => {
         <div className="flex justify-center">
           <Link
             to="/services"
-            className="btn btn-success w-40 rounded-none text-lg mt-10 text-white font-semibold"
+            className="btn btn-success w-40 rounded-none text-lg mt-10 text-white font-semibold flex justify-center items-center gap-4 hover:bg-emerald-600"
           >
-            See All
+            <p>See All</p>
+            <FaArrowRight></FaArrowRight>
           </Link>
         </div>
       </div>
