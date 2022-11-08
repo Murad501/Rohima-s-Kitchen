@@ -1,19 +1,44 @@
-import React from 'react';
+import { updateProfile } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../../Context/UserContext';
 
 const Register = () => {
 
-    const handleRegister = (event) =>{
+    const {createUserByEmail} = useContext(authContext)
+    const [error, setError] = useState('')
 
+    const handleRegister = (event) =>{
+        event.preventDefault()
+        const form = event.target;
+
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const userImage = form.imageUrl.value;
+
+
+        createUserByEmail(email, password)
+        .then(result => {
+            setError('')
+            const user = result.user
+            updateProfile(user, {
+                displayName: name,
+                photoURL: userImage
+            })
+            console.log(user)
+        })
+        .catch(err => console.error(err))
     }
 
     return (
         <div className="flex justify-center my-20">
       <div className="card w-full max-w-lg border hover:shadow-lg rounded-none">
-        <p className="text-center my-5 font-bold text-3xl">Please Login</p>
+        <p className="text-center my-5 font-bold text-3xl">Please Register</p>
         <div className="card-body">
           <form onSubmit={handleRegister}>
             <div className="form-control">
+                <p>{error}</p>
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
@@ -49,12 +74,24 @@ const Register = () => {
                 className="input input-bordered"
               />
             </div>
-            <div className="mx-auto w-full">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Image url</span>
+              </label>
+              <input
+                required
+                type="text"
+                name="imageUrl"
+                placeholder="url"
+                className="input input-bordered"
+              />
+            </div>
+            <div className="mx-auto my-5 w-full">
               <button
                 type="submit"
                 className="btn bg-success border-none rounded-none text-whiter w-full text-lg font-semibold hover:bg-emerald-600"
               >
-                Login
+                Register
               </button>
             </div>
           </form>
