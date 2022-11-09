@@ -1,11 +1,15 @@
 import { updateProfile } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../Context/UserContext";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
   const { createUserByEmail } = useContext(authContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate()
+
+  useTitle('Register')
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -24,6 +28,7 @@ const Register = () => {
           displayName: name,
           photoURL: userImage,
         });
+        navigate('/')
       })
       .catch((err) => console.error(err));
   };

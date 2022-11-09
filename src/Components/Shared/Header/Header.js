@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../Assets/logo.jpg";
 import { authContext } from "../../../Context/UserContext";
 
 const Header = () => {
   const { user, logOut } = useContext(authContext);
+  const location = useLocation()
 
   const handleLogOut = () => {
     logOut()
@@ -71,6 +72,7 @@ const Header = () => {
               <li>
                 <Link
                   to="/login"
+                  state={{ from: location }}
                   className="btn btn-success text-white rounded-none"
                 >
                   Log in
@@ -122,6 +124,7 @@ const Header = () => {
             <li className="mx-1">
               <Link
                 to="/login"
+                state={{ from: location }}
                 className="btn btn-success text-white rounded-none"
               >
                 Log in
