@@ -2,7 +2,9 @@ import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { authContext } from "../../../Context/UserContext";
+import { toastSuccess } from "../Toast/Toast";
 import ReviewCart from "./ReviewCart";
 
 const ServiceDetails = () => {
@@ -52,17 +54,19 @@ const ServiceDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.insertedId){
-            const currentReviews = [review, ...reviews]
-            setReviews(currentReviews)
+        if (data.insertedId) {
+          toastSuccess('Review added successfully')
+          event.target.reset()
+          const currentReviews = [review, ...reviews];
+          setReviews(currentReviews);
         }
       });
   };
 
   return (
     <div>
-      <div class="grid mg:grid-cols-5 lg:grid-cols-3 gap-4">
-        <div class="md:col-span-3 lg:col-span-2">
+      <div className="grid mg:grid-cols-5 lg:grid-cols-3 gap-4">
+        <div className="md:col-span-3 lg:col-span-2">
           <div className="card w-full border rounded-none p-3">
             <div className="card-body px-0">
               <h2 className="font-bold text-3xl">{title}</h2>
@@ -76,7 +80,7 @@ const ServiceDetails = () => {
             <p className="text-lg">{description}</p>
           </div>
         </div>
-        <div class="md:col-span-2 lg:col-span-1">
+        <div className="md:col-span-2 lg:col-span-1">
           {user?.email ? (
             <div className="text-center">
               <h1 className="mb-5 text-xl font-bold">Take a review</h1>
@@ -87,7 +91,7 @@ const ServiceDetails = () => {
                 <textarea
                   name="review"
                   required
-                  className="textarea textarea-bordered w-10/12 rounded-none"
+                  className="textarea textarea-bordered w-10/12 rounded-none h-48"
                   placeholder="Your valuable feedback..."
                 ></textarea>
                 <button
@@ -122,14 +126,19 @@ const ServiceDetails = () => {
           )}
         </div>
       </div>
-      <div className="my-10">
-        <h1 className="text-2xl lg:text-5xl font-bold mb-10 text-center">Customer Reviews</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {reviews.map((review) => (
-          <ReviewCart key={review._id} review={review}></ReviewCart>
-        ))}
-      </div>
-      </div>
+      {reviews.length > 0 && (
+        <div className="my-10">
+          <h1 className="text-2xl lg:text-5xl font-bold mb-10 text-center">
+            Customer Reviews
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {reviews.map((review) => (
+              <ReviewCart key={review._id} review={review}></ReviewCart>
+            ))}
+          </div>
+        </div>
+      )}
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
