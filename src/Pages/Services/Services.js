@@ -8,7 +8,7 @@ const Services = () => {
   useTitle("Services");
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://server-rohimas-kitchen.vercel.app/services")
       .then((res) => res.json())
       .then((data) => {
         setServices(data);

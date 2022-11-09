@@ -33,12 +33,12 @@ const router = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/service/${params.id}`) 
+                loader: ({params}) => fetch(`https://server-rohimas-kitchen.vercel.app/service/${params.id}`) 
             },
             {
                 path: '/editreview/:id',
                 element: <EditReview></EditReview>,
-                loader: ({params}) => fetch(`http://localhost:5000/editreview/${params.id}`)
+                loader: ({params}) => fetch(`https://server-rohimas-kitchen.vercel.app/editreview/${params.id}`)
             },
             {
                 path: '/login',

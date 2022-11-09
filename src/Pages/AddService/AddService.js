@@ -22,7 +22,7 @@ const AddService = () => {
             description
         }
 
-        fetch('http://localhost:5000/service', {
+        fetch('https://server-rohimas-kitchen.vercel.app/service', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'
