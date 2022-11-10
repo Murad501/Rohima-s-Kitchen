@@ -21,10 +21,8 @@ const MyReviews = () => {
       .then((res) => {
         if(res.status === 401 || res.status === 403){
           logOut()
-          .then(()=>{
-            localStorage.removeItem('token')
-          })
-          .catch(err => console.error(err))
+          .then(()=>{})
+          .catch(()=>{})
         }
         return res.json()
       })
