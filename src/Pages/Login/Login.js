@@ -29,7 +29,19 @@ const Login = () => {
 
     signInUserByEmail(email, password)
       .then((result) => {
-        console.log(result.user)
+
+        const user = result.user.email
+        fetch('https://rohimas-kitchen-server.vercel.app/jwt',{
+          method: 'POST',
+          headers: {
+            'content-type' : 'application/json'
+          },
+          body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('token', data.token)
+        })
         navigate(from, {replace: true})
       })
       .catch((err) => console.error(err));
