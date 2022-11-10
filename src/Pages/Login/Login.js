@@ -16,7 +16,7 @@ const Login = () => {
 
   const handleGoogleLogIn = () => {
     googleLogIn(googleProvider)
-      .then((result) => {
+      .then(() => {
         navigate(from, {replace: true})
       })
       .catch((err) => console.error(err));
@@ -28,20 +28,7 @@ const Login = () => {
     const password = event.target.password.value;
 
     signInUserByEmail(email, password)
-      .then((result) => {
-
-        const user = result.user.email
-        fetch('https://rohimas-kitchen-server.vercel.app/jwt',{
-          method: 'POST',
-          headers: {
-            'content-type' : 'application/json'
-          },
-          body: JSON.stringify(user)
-        })
-        .then(res => res.json())
-        .then(data => {
-          localStorage.setItem('token', data.token)
-        })
+      .then(() => {
         navigate(from, {replace: true})
       })
       .catch((err) => console.error(err));
