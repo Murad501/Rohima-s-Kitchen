@@ -13,7 +13,11 @@ const MyReviews = () => {
   useTitle('My Reviews')
 
   useEffect(() => {
-    fetch(`https://server-rohimas-kitchen.vercel.app/myreviews?email=${user?.email}`)
+    fetch(`https://server-rohimas-kitchen.vercel.app/myreviews?email=${user?.email}`,{
+      headers : {
+        authorization : `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
