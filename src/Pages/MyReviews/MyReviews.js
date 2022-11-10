@@ -18,20 +18,10 @@ const MyReviews = () => {
         authorization : `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then((res) => {
-        if(res.status === 401 || res.status === 403){
-         return (
-          logOut()
-          .then(()=>{
-            localStorage.removeItem('token')
-          })
-          .catch(err => console.error(err))
-         )
-        }
-        return res.json()
-      })
-      .then((data) => setReviews(data));
-  }, [user?.email, logOut]);
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data)});
+  }, [user?.email]);
 
   const handleDeleteReview = (id) =>{
     fetch(`https://final-server-rohimas-kitchen.vercel.app/delete/${id}`, {
