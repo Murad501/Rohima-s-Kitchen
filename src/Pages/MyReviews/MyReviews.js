@@ -7,7 +7,7 @@ import MyReviewCart from "./MyReviewCart";
 
 
 const MyReviews = () => {
-  const { user, logOut} = useContext(authContext);
+  const {user} = useContext(authContext);
   const [reviews, setReviews] = useState([]);
 
   useTitle('My Reviews')
