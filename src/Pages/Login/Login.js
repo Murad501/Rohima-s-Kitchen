@@ -29,7 +29,7 @@ const Login = () => {
 
     signInUserByEmail(email, password)
       .then((result) => {
-
+        console.log(result.user)
         navigate(from, {replace: true})
       })
       .catch((err) => console.error(err));

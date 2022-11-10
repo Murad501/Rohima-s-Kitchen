@@ -10,7 +10,7 @@ const EditReview = () => {
         event.preventDefault()
         const editedReview = event.target.updateReview.value
 
-        fetch(`http://localhost:5000/editreview/${review._id}`, {
+        fetch(`https://rohimas-kitchen-server.vercel.app/editreview/${review._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type' : 'application/json'

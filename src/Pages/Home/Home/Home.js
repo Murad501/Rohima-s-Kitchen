@@ -11,7 +11,7 @@ const Home = () => {
   useTitle("Home");
 
   useEffect(() => {
-    fetch("http://localhost:5000/home")
+    fetch("https://rohimas-kitchen-server.vercel.app/home")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
