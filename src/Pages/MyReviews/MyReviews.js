@@ -13,14 +13,14 @@ const MyReviews = () => {
   useTitle('My Reviews')
 
   useEffect(() => {
-    fetch(`https://rohimas-kitchen-server.vercel.app/myreviews?email=${user?.email}`
+    fetch(`https://server-link-rohimas-kitchen.vercel.app/myreviews?email=${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
 
   const handleDeleteReview = (id) =>{
-    fetch(`https://rohimas-kitchen-server.vercel.app/delete/${id}`, {
+    fetch(`https://server-link-rohimas-kitchen.vercel.app/delete/${id}`, {
         method: 'DELETE',
     })
     .then(res => res.json())

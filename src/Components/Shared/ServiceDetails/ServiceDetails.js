@@ -16,7 +16,7 @@ const ServiceDetails = () => {
   const { picture, title, price, description, _id } = service;
 
   useEffect(() => {
-    fetch(`https://rohimas-kitchen-server.vercel.app/reviews?id=${_id}`)
+    fetch(`https://server-link-rohimas-kitchen.vercel.app/reviews?id=${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [_id]);
@@ -45,7 +45,7 @@ const ServiceDetails = () => {
       time: new Date(),
     };
 
-    fetch("https://rohimas-kitchen-server.vercel.app/review", {
+    fetch("https://server-link-rohimas-kitchen.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
