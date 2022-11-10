@@ -7,7 +7,7 @@ import MyReviewCart from "./MyReviewCart";
 
 
 const MyReviews = () => {
-  const { user } = useContext(authContext);
+  const { user, logOut} = useContext(authContext);
   const [reviews, setReviews] = useState([]);
 
   useTitle('My Reviews')
@@ -18,9 +18,18 @@ const MyReviews = () => {
         authorization : `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if(res.status === 401 || res.status === 403){
+          logOut()
+          .then(()=>{
+            localStorage.removeItem('token')
+          })
+          .catch(err => console.error(err))
+        }
+        return res.json()
+      })
       .then((data) => setReviews(data));
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   const handleDeleteReview = (id) =>{
     fetch(`https://final-server-rohimas-kitchen.vercel.app/delete/${id}`, {
