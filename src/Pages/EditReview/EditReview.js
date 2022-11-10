@@ -1,8 +1,10 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toastSuccess } from "../../Components/Shared/Toast/Toast";
+import useTitle from "../../hooks/useTitle";
 
 const EditReview = () => {
+  useTitle('Edit Review')
   const review = useLoaderData();
   const navigate = useNavigate()
 
