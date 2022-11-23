@@ -1,6 +1,6 @@
 import { updateProfile } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Context/UserContext";
 import useTitle from "../../hooks/useTitle";
 
@@ -8,6 +8,8 @@ const Register = () => {
   const { createUserByEmail } = useContext(authContext);
   const [error, setError] = useState("");
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   useTitle('Register')
 
@@ -28,7 +30,21 @@ const Register = () => {
           displayName: name,
           photoURL: userImage,
         });
-        navigate('/')
+        const email = result.user.email
+
+        fetch('https://final-server-rohimas-kitchen.vercel.app/jwt', {
+          method: "POST",
+          headers: {
+            'content-type' : 'application/json'
+          },
+          body: JSON.stringify({email})
+        })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('token', data.token)
+        })
+
+        navigate(from, {replace: true})
       })
       .catch((err) => console.error(err));
   };
